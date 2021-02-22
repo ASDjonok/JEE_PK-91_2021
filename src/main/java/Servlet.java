@@ -16,7 +16,8 @@ public class Servlet extends HttpServlet {
         System.out.println("!!!!!!!!!!! request.getHeaderNames() = " + request.getHeaderNames().nextElement());
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("<i>Hello!</i>");
+//        printWriter.write("<i>Hello!4</i>");
+        printWriter.write("Hello!");
         printWriter.close();
     }
 }
