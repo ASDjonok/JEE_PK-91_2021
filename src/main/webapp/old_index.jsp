@@ -10,20 +10,15 @@
 <head>
     <title>Title3</title>
     <link href="test.css" rel="stylesheet" type="text/css">
-    <script src="new_myscripts.js"></script>
-<%--    <script src="new_myscripts2.js"></script>--%>
+    <script src="old_myscripts.js"></script>
 </head>
 <body>
 
-    <input type="text" size="40">
-
-    <button onclick="onButtonClick()">MyButton</button>
-
-<%--<%= "Hello World" + 1/2%>
+<%= "Hello World" + 1/2%>
 
 <%System.out.println("!!!!!!!!!!!ASD");%>
 <%out.println("<p>!!!!!!!!!!!ASD</p>");%>
-<%="<p>Test</p>"%>--%>
+<%="<p>Test</p>"%>
 
 <%--<form action="/submit" method="GET">
     <input name="name" value="Ivan">
