@@ -1,4 +1,13 @@
-body
-{
+/*body {
     background-color: #2be2ae;
+}*/
+
+input {
+    margin-top: 5px;
+    display: block;
+    width: 300px;
+}
+
+.add-library-button {
+    margin-top: 5px;
 }

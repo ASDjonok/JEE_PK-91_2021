@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>FirstServlet</servlet-name>
         <servlet-class>Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FirstServlet</servlet-name>
         <url-pattern>/hello-world</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>LibraryServlet</servlet-name>
@@ -30,5 +30,24 @@
         <servlet-name>FirstJsp</servlet-name>
         <url-pattern>/first-jsp</url-pattern>
     </servlet-mapping>
+
+    <!--<servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>-->
+
+    <!--<filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+        <init-param>
+            <param-name>cors.allowed.origins</param-name>
+            <param-value> http://localhost:4200, http://localhost:3000 </param-value>
+        </init-param>
+    </filter>-->
+
 
 </web-app>
