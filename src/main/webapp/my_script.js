@@ -1,18 +1,17 @@
 ;
 
 function onAddToLibraryButtonClick() {
-    var data = document.getElementsByTagName('input')[0].value;
-    var data1 = document.getElementsByTagName('input')[1].value;
-    var data2 = document.getElementsByTagName('input')[2].value;
-    console.log(data);
-    console.log(data1);
-    console.log(data2);
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const quantity = document.getElementById('quantity').value;
+    console.log(title);
+    console.log(author);
+    console.log(quantity);
 
-    /*var xhr = new XMLHttpRequest();
-    var body = 'name=' + encodeURIComponent(data) +
-        '&surname=' + encodeURIComponent("Aleshchenko2");
+    const xhr = new XMLHttpRequest();
+    const body = title + "\n" + author + "\n" + quantity;
     xhr.open("POST", 'http://localhost:8080/library', true);
-    xhr.send(body);*/
+    xhr.send(body);
 }
 
 function onLibraryButtonClick() {

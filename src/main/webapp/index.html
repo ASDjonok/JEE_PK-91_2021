@@ -7,18 +7,38 @@
         <link href="test.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <label>
-            Library content:
-            <textarea style="height: 300px; width: 300px; display: block;"></textarea>
-        </label>
-        <button style="display: block; margin-bottom: 10px; margin-top: 5px;"
-                onclick="onLibraryButtonClick()">Show Library</button>
-        <label>
-            Title:
-            <input type="text" size="40">
-        </label>
-        <input type="text" size="40">
-        <input type="text" size="40">
-        <button class="add-library-button" onclick="onAddToLibraryButtonClick()">Add to Library</button>
+        <form action="http://localhost:8080/login" method="post">
+            <label>
+                Login:
+                <input type="text" size="40" name="user_name">
+            </label>
+            <label>
+                Password:
+                <input type="text" size="40" name="user_password">
+            </label>
+            <p><input type="submit"></p>
+        </form>
+
+        <div hidden>
+            <label>
+                Library content:
+                <textarea style="height: 300px; width: 300px; display: block;"></textarea>
+            </label>
+            <button style="display: block; margin-bottom: 10px; margin-top: 5px;"
+                    onclick="onLibraryButtonClick()">Show Library</button>
+            <label>
+                Title:
+                <input id="title" type="text" size="40">
+            </label>
+            <label>
+                Author:
+                <input id="author" type="text" size="40">
+            </label>
+            <label>
+                Quantity:
+                <input id="quantity" type="text" size="40">
+            </label>
+            <button class="add-library-button" onclick="onAddToLibraryButtonClick()">Add to Library</button>
+        </div>
     </body>
 </html>
