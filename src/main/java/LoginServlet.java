@@ -18,10 +18,16 @@ public class LoginServlet extends HttpServlet {
         /*ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
         requestDispatcher.forward(req, resp);*/
+//            todo add more users
         if ("admin".equals(username) && "admin".equals(password)) {
-//            todo change token
-            String token = username + password;
-            resp.addCookie(new Cookie("token", token));
+            String tokenFromDataBase = DataBaseDeputy.getToken();
+            if (tokenFromDataBase == null) {
+                String newToken = "" + Integer.toHexString(username.hashCode() + (int) System.currentTimeMillis()) +
+                        Integer.toHexString(password.hashCode() + (int) System.currentTimeMillis());
+                DataBaseDeputy.setToken(newToken);
+                tokenFromDataBase = newToken;
+            }
+            resp.addCookie(new Cookie("token", tokenFromDataBase));
             resp.sendRedirect("/");
         } else {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");

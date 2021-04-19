@@ -75,8 +75,7 @@ public class LibraryServlet extends HttpServlet {
         boolean isTokenValid = false;
         for (Cookie cookie : cookies) {
             if ("token".equals(cookie.getName())) {
-//                todo unhardcode token value
-                if ("adminadmin".equals(cookie.getValue())) {
+                if (DataBaseDeputy.getToken().equals(cookie.getValue())) {
                     isTokenValid = true;
                     break;
                 }
