@@ -22,6 +22,7 @@ public class LoginServlet extends HttpServlet {
 //            todo change token
             String token = username + password;
             resp.addCookie(new Cookie("token", token));
+            resp.addCookie(new Cookie("test", "test"));
             resp.sendRedirect("/");
         } else {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");

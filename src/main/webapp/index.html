@@ -7,7 +7,7 @@
         <link href="test.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <form action="http://localhost:8080/login" method="post">
+        <form id="login-form" action="http://localhost:8080/login" method="post">
             <label>
                 Login:
                 <input type="text" size="40" name="user_name">
@@ -19,7 +19,7 @@
             <p><input type="submit"></p>
         </form>
 
-        <div hidden>
+        <div id="library-view" hidden>
             <label>
                 Library content:
                 <textarea style="height: 300px; width: 300px; display: block;"></textarea>

@@ -1,4 +1,15 @@
-;
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+window.onload = function() {
+    if (getCookie("token")) {
+        document.getElementById('login-form').hidden = true;
+        document.getElementById('library-view').hidden = false;
+    }
+};
 
 function onAddToLibraryButtonClick() {
     const title = document.getElementById('title').value;
