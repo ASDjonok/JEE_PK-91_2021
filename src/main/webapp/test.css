@@ -11,3 +11,9 @@ input {
 .add-library-button {
     margin-top: 5px;
 }
+
+.logout-button {
+    /*margin-top: 5px;*/
+    margin-left: 248px;
+    display: block;
+}
