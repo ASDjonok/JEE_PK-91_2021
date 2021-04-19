@@ -1,8 +1,5 @@
-import org.json.HTTP;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,6 +71,22 @@ public class LibraryServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        boolean isTokenValid = false;
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+//                todo unhardcode token value
+                if ("adminadmin".equals(cookie.getValue())) {
+                    isTokenValid = true;
+                    break;
+                }
+            }
+        }
+        if (!isTokenValid) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");
+            return;
+        }
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {

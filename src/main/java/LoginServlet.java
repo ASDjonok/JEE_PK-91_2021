@@ -1,6 +1,7 @@
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,9 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
         requestDispatcher.forward(req, resp);*/
         if ("admin".equals(username) && "admin".equals(password)) {
+//            todo change token
+            String token = username + password;
+            resp.addCookie(new Cookie("token", token));
             resp.sendRedirect("/");
         } else {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");

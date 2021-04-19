@@ -20,9 +20,15 @@ function onLibraryButtonClick() {
         .then(response => {
             // console.log("2222")
             async function f1() {
-                var responseText = await response.text();
+                const responseStatus = response.status;
+                const responseText = await response.text();
+                console.log("responseStatus = " + responseStatus);
                 console.log("Response = " + responseText); // 10
-                document.getElementsByTagName("textarea")[0].value = responseText;
+                if (responseStatus === 200) {
+                    document.getElementsByTagName("textarea")[0].value = responseText;
+                } else {
+                    document.getElementsByTagName("textarea")[0].value = "Error"
+                }
             }
             f1();
         });
