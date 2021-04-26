@@ -11,6 +11,9 @@ import java.sql.*;
 public class LibraryServlet extends HttpServlet {
 //    todo make one common place for init connection
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        todo check JCC (is block needed)
+        if (isTokenNotValidAndRefreshItIfValid(request, response)) return;
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -70,21 +73,29 @@ public class LibraryServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//    todo think about name
+    private boolean isTokenNotValidAndRefreshItIfValid(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Cookie[] cookies = request.getCookies();
         boolean isTokenValid = false;
         for (Cookie cookie : cookies) {
             if ("token".equals(cookie.getName())) {
                 if (DataBaseDeputy.getToken().equals(cookie.getValue())) {
                     isTokenValid = true;
+                    cookie.setMaxAge(LoginServlet.TOKEN_LIFE);
+                    response.addCookie(cookie);
                     break;
                 }
             }
         }
         if (!isTokenValid) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");
-            return;
         }
+        return !isTokenValid;
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //        todo check JCC (is block needed)
+        if (isTokenNotValidAndRefreshItIfValid(request, response)) return;
 
         try {
             Class.forName("org.postgresql.Driver");

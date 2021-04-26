@@ -1,5 +1,3 @@
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
+    final static int TOKEN_LIFE = 15;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
@@ -27,7 +27,9 @@ public class LoginServlet extends HttpServlet {
                 DataBaseDeputy.setToken(newToken);
                 tokenFromDataBase = newToken;
             }
-            resp.addCookie(new Cookie("token", tokenFromDataBase));
+            Cookie tokenCookie = new Cookie("token", tokenFromDataBase);
+            tokenCookie.setMaxAge(TOKEN_LIFE);
+            resp.addCookie(tokenCookie);
             resp.sendRedirect("/");
         } else {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");
