@@ -19,7 +19,8 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
         requestDispatcher.forward(req, resp);*/
 //            todo add more users
-        if ("admin".equals(username) && "admin".equals(password)) {
+//        if ("admin".equals(username) && "admin".equals(password)) {
+        if (DataBaseDeputy.areUserCredentialsValid(username, password)) {
             String tokenFromDataBase = DataBaseDeputy.getToken();
             if (tokenFromDataBase == null) {
                 String newToken = "" + Integer.toHexString(username.hashCode() + (int) System.currentTimeMillis()) +
@@ -30,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             Cookie tokenCookie = new Cookie("token", tokenFromDataBase);
             tokenCookie.setMaxAge(TOKEN_LIFE);
             resp.addCookie(tokenCookie);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/?user=" + username);
         } else {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN, ":P");
         }

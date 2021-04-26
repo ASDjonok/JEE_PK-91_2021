@@ -9,23 +9,13 @@ import java.io.PrintWriter;
 import java.sql.*;
 
 public class LibraryServlet extends HttpServlet {
-//    todo make one common place for init connection
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        todo check JCC (is block needed)
         if (isTokenNotValidAndRefreshItIfValid(request, response)) return;
 
         try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("!!!!!!!!!!!! :(");
-            e.printStackTrace();
-        }
+            Statement statement = DataBaseDeputy.getDBStatement();
 
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/java_ee_db",
-                    "postgres", "admin");
-
-            Statement statement = connection.createStatement();
             BufferedReader reader = request.getReader();
             String title = reader.readLine();
             String author = reader.readLine();
@@ -68,7 +58,7 @@ public class LibraryServlet extends HttpServlet {
             }*/
 
             statement.close();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -97,18 +87,19 @@ public class LibraryServlet extends HttpServlet {
         //        todo check JCC (is block needed)
         if (isTokenNotValidAndRefreshItIfValid(request, response)) return;
 
-        try {
+       /* try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("!!!!!!!!!!!! :(");
             e.printStackTrace();
-        }
+        }*/
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/java_ee_db",
+            /*Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/java_ee_db",
                     "postgres", "admin");
 
-            Statement statement = connection.createStatement();
+            Statement statement = connection.createStatement();*/
+            Statement statement = DataBaseDeputy.getDBStatement();
 //            /*ResultSet resultSet = */statement.executeUpdate("insert into books (title, author, quantity) values ('War and Peace 3', 'Leo Tolstoy', 1);");
             ResultSet resultSet = statement.executeQuery("select * from books");
 
@@ -119,7 +110,7 @@ public class LibraryServlet extends HttpServlet {
             }
 
             statement.close();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -8,14 +8,6 @@
     </head>
     <body>
 
-    <!--<div class="controls">
-        <input class="xhr success" type="button" name="xhr" value="Click to start XHR (success)" />
-        <input class="xhr error" type="button" name="xhr" value="Click to start XHR (error)" />
-        <input class="xhr abort" type="button" name="xhr" value="Click to start XHR (abort)" />
-    </div>
-
-    <textarea readonly class="event-log"></textarea>-->
-
         <form id="login-form" action="http://localhost:8080/login" method="post">
             <label>
                 Login:
@@ -29,6 +21,8 @@
         </form>
 
         <div id="library-view" hidden>
+            <span id="user-name"></span>
+
             <button class="logout-button" onclick="onLogoutButtonClick()">Logout</button>
 
             <label>
@@ -50,6 +44,9 @@
                 <input id="quantity" type="text" size="40">
             </label>
             <button class="add-library-button" onclick="onAddToLibraryButtonClick()">Add to Library</button>
+            <button class="get-from-library-button" onclick="onGetFromLibraryButtonClick()" hidden>
+                Get from Library
+            </button>
         </div>
     </body>
 </html>
